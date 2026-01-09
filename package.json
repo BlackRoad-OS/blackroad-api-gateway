@@ -1,0 +1,30 @@
+{
+  "name": "blackroad-api-gateway",
+  "version": "1.0.0",
+  "description": "Unified API Gateway for all BlackRoad enterprise products",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest"
+  },
+  "keywords": [
+    "api-gateway",
+    "blackroad",
+    "enterprise",
+    "cloudflare-workers"
+  ],
+  "author": "BlackRoad OS, Inc.",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "hono": "^4.0.0",
+    "jose": "^5.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.0.0",
+    "wrangler": "^3.0.0",
+    "vitest": "^1.0.0"
+  }
+}

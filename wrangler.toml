@@ -1,0 +1,35 @@
+name = "blackroad-api-gateway"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespaces for rate limiting, caching
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "blackroad-rate-limit"
+preview_id = "blackroad-rate-limit-preview"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "blackroad-cache"
+preview_id = "blackroad-cache-preview"
+
+# D1 Database for users, subscriptions, usage tracking
+[[d1_databases]]
+binding = "DB"
+database_name = "blackroad-api-gateway"
+database_id = "blackroad-api-gateway-prod"
+preview_database_id = "blackroad-api-gateway-dev"
+
+# Environment variables
+[env.production]
+name = "blackroad-api-gateway-prod"
+vars = { ENVIRONMENT = "production" }
+
+[env.development]
+name = "blackroad-api-gateway-dev"
+vars = { ENVIRONMENT = "development" }
+
+# Secrets (set via: wrangler secret put)
+# - STRIPE_SECRET_KEY
+# - JWT_SECRET
+# - ADMIN_API_KEY
