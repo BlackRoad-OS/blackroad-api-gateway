@@ -1,253 +1,48 @@
-# BlackRoad API Gateway
+<!-- BlackRoad SEO Enhanced -->
 
-**Unified API Gateway for all BlackRoad enterprise products**
+# ulackroad api gateway
 
-## Features
+> Part of **[BlackRoad OS](https://blackroad.io)** — Sovereign Computing for Everyone
 
-✅ **Authentication & Authorization**
-- JWT-based authentication
-- API key support
-- Role-based access control (RBAC)
-- Multi-product access management
+[![BlackRoad OS](https://img.shields.io/badge/BlackRoad-OS-ff1d6c?style=for-the-badge)](https://blackroad.io)
+[![BlackRoad OS](https://img.shields.io/badge/Org-BlackRoad-OS-2979ff?style=for-the-badge)](https://github.com/BlackRoad-OS)
+[![License](https://img.shields.io/badge/License-Proprietary-f5a623?style=for-the-badge)](LICENSE)
 
-✅ **Rate Limiting**
-- Per-user rate limits
-- Tier-based limits (Starter/Pro/Enterprise)
-- Per-product rate limits
-- Automatic throttling
+**ulackroad api gateway** is part of the **BlackRoad OS** ecosystem — a sovereign, distributed operating system built on edge computing, local AI, and mesh networking by **BlackRoad OS, Inc.**
 
-✅ **Request Routing**
-- Intelligent routing to product backends
-- Load balancing
-- Failover support
-- Health checking
+## About BlackRoad OS
 
-✅ **Usage Tracking**
-- Request logging
-- Usage metrics for billing
-- Real-time analytics
-- Historical reporting
+BlackRoad OS is a sovereign computing platform that runs AI locally on your own hardware. No cloud dependencies. No API keys. No surveillance. Built by [BlackRoad OS, Inc.](https://github.com/BlackRoad-OS-Inc), a Delaware C-Corp founded in 2025.
 
-✅ **Billing Integration**
-- Stripe subscription management
-- Usage-based billing
-- Invoice generation
-- Payment processing
+### Key Features
+- **Local AI** — Run LLMs on Raspberry Pi, Hailo-8, and commodity hardware
+- **Mesh Networking** — WireGuard VPN, NATS pub/sub, peer-to-peer communication
+- **Edge Computing** — 52 TOPS of AI acceleration across a Pi fleet
+- **Self-Hosted Everything** — Git, DNS, storage, CI/CD, chat — all sovereign
+- **Zero Cloud Dependencies** — Your data stays on your hardware
 
-## Architecture
+### The BlackRoad Ecosystem
+| Organization | Focus |
+|---|---|
+| [BlackRoad OS](https://github.com/BlackRoad-OS) | Core platform and applications |
+| [BlackRoad OS, Inc.](https://github.com/BlackRoad-OS-Inc) | Corporate and enterprise |
+| [BlackRoad AI](https://github.com/BlackRoad-AI) | Artificial intelligence and ML |
+| [BlackRoad Hardware](https://github.com/BlackRoad-Hardware) | Edge hardware and IoT |
+| [BlackRoad Security](https://github.com/BlackRoad-Security) | Cybersecurity and auditing |
+| [BlackRoad Quantum](https://github.com/BlackRoad-Quantum) | Quantum computing research |
+| [BlackRoad Agents](https://github.com/BlackRoad-Agents) | Autonomous AI agents |
+| [BlackRoad Network](https://github.com/BlackRoad-Network) | Mesh and distributed networking |
+| [BlackRoad Education](https://github.com/BlackRoad-Education) | Learning and tutoring platforms |
+| [BlackRoad Labs](https://github.com/BlackRoad-Labs) | Research and experiments |
+| [BlackRoad Cloud](https://github.com/BlackRoad-Cloud) | Self-hosted cloud infrastructure |
+| [BlackRoad Forge](https://github.com/BlackRoad-Forge) | Developer tools and utilities |
 
-```
-┌─────────────────────────────────────────────────┐
-│          Client Applications                     │
-│   (Web, Mobile, API clients)                    │
-└──────────────────┬──────────────────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────────────────┐
-│      🖤 BlackRoad API Gateway 🖤                │
-│                                                  │
-│  ┌────────────────────────────────────────┐   │
-│  │  Authentication & Authorization        │   │
-│  │  - JWT validation                      │   │
-│  │  - API key verification                │   │
-│  │  - RBAC                                │   │
-│  └────────────────────────────────────────┘   │
-│                                                  │
-│  ┌────────────────────────────────────────┐   │
-│  │  Rate Limiting                         │   │
-│  │  - Per-user limits                     │   │
-│  │  - Tier-based throttling               │   │
-│  └────────────────────────────────────────┘   │
-│                                                  │
-│  ┌────────────────────────────────────────┐   │
-│  │  Request Routing                       │   │
-│  │  - Product routing                     │   │
-│  │  - Load balancing                      │   │
-│  └────────────────────────────────────────┘   │
-│                                                  │
-│  ┌────────────────────────────────────────┐   │
-│  │  Usage Tracking                        │   │
-│  │  - Logging                             │   │
-│  │  - Metrics                             │   │
-│  │  - Billing data                        │   │
-│  └────────────────────────────────────────┘   │
-│                                                  │
-└──────────────────┬──────────────────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────────────────┐
-│          Product Backends                        │
-│                                                  │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
-│  │  vLLM    │  │ Keycloak │  │  MinIO   │     │
-│  │ Backend  │  │ Backend  │  │ Backend  │ ... │
-│  └──────────┘  └──────────┘  └──────────┘     │
-└─────────────────────────────────────────────────┘
-```
-
-## Installation
-
-```bash
-npm install
-```
-
-## Development
-
-```bash
-npm run dev
-```
-
-## Deployment
-
-```bash
-# Deploy to Cloudflare Workers
-wrangler login
-wrangler deploy
-
-# Set secrets
-wrangler secret put JWT_SECRET
-wrangler secret put STRIPE_SECRET_KEY
-wrangler secret put ADMIN_API_KEY
-```
-
-## API Endpoints
-
-### Authentication
-
-```bash
-# Login
-POST /auth/login
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
-
-# Register
-POST /auth/register
-{
-  "email": "user@example.com",
-  "password": "password123",
-  "plan": "pro"
-}
-```
-
-### Product APIs (Authenticated)
-
-```bash
-# BlackRoad vLLM
-POST /api/vllm/v1/completions
-Authorization: Bearer <jwt_token>
-
-# BlackRoad Identity
-GET /api/identity/users
-Authorization: Bearer <jwt_token>
-
-# BlackRoad Storage
-POST /api/storage/upload
-Authorization: Bearer <jwt_token>
-```
-
-### Admin API
-
-```bash
-# Get users
-GET /admin/users
-Authorization: Bearer <admin_jwt_token>
-
-# Analytics
-GET /admin/analytics
-Authorization: Bearer <admin_jwt_token>
-```
-
-### Webhooks
-
-```bash
-# Stripe webhook
-POST /webhooks/stripe
-Stripe-Signature: <signature>
-```
-
-## Database Schema
-
-```sql
--- Users table
-CREATE TABLE users (
-  id TEXT PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
-  password_hash TEXT NOT NULL,
-  plan TEXT NOT NULL, -- 'starter', 'pro', 'enterprise'
-  stripe_customer_id TEXT,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
--- Subscriptions table
-CREATE TABLE subscriptions (
-  id TEXT PRIMARY KEY,
-  user_id TEXT NOT NULL,
-  product TEXT NOT NULL, -- 'vllm', 'keycloak', etc.
-  plan TEXT NOT NULL,
-  status TEXT NOT NULL, -- 'active', 'cancelled', 'past_due'
-  stripe_subscription_id TEXT,
-  current_period_start DATETIME,
-  current_period_end DATETIME,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
--- Usage tracking table
-CREATE TABLE usage (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id TEXT NOT NULL,
-  product TEXT NOT NULL,
-  endpoint TEXT NOT NULL,
-  method TEXT NOT NULL,
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
--- API keys table
-CREATE TABLE api_keys (
-  id TEXT PRIMARY KEY,
-  user_id TEXT NOT NULL,
-  key_hash TEXT NOT NULL,
-  name TEXT,
-  last_used DATETIME,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-```
-
-## Rate Limits
-
-| Tier       | Requests/Minute | Requests/Day |
-|------------|-----------------|--------------|
-| Starter    | 60              | 10,000       |
-| Pro        | 1,000           | 100,000      |
-| Enterprise | Unlimited       | Unlimited    |
-
-## Security
-
-- All requests over HTTPS
-- JWT tokens expire after 24 hours
-- API keys can be rotated
-- Rate limiting prevents abuse
-- CORS configured for allowed origins only
-- Webhook signatures verified
-
-## Monitoring
-
-- Cloudflare Workers Analytics
-- Custom metrics via D1
-- Error tracking
-- Performance monitoring
-
-## License
-
-**PROPRIETARY** - BlackRoad OS, Inc.
-
-This is proprietary software. Unauthorized copying, distribution, or use is strictly prohibited.
+### Links
+- **Website**: [blackroad.io](https://blackroad.io)
+- **Documentation**: [docs.blackroad.io](https://docs.blackroad.io)
+- **Chat**: [chat.blackroad.io](https://chat.blackroad.io)
+- **Search**: [search.blackroad.io](https://search.blackroad.io)
 
 ---
 
-**🖤 Built with BlackRoad - Enterprise-grade infrastructure 🛣️**
+
